@@ -37,7 +37,7 @@
                 }
                 else
                 {
-                    for (int j = firstIndex; j < lastIndex; j++)
+                    for (int j = firstIndex; j <= lastIndex; j++)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(input[j]);
