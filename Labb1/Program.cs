@@ -7,7 +7,7 @@
             // program prompts user to enter a text string to be searched 
             Console.WriteLine("Enter a string to search through: ");
             string input = Console.ReadLine();
-            
+
 
             // text string is to be searched for substrings with numbers 
             // the substrings should start and end with the same number 
@@ -23,13 +23,25 @@
             // all substring numbers are also to be added - this needs a long instead of an int
             // because very large number is possible 
 
-            for (int i = 0; i < input.Length; i++)
+
+            // print out first and last index of each occurence of all numbers between 0-9
+            for (int i = 0; i < 10; i++)
             {
-                if (Char.IsDigit(input[i]))
+                int firstIndex = input.IndexOf(i.ToString());
+                int lastIndex = input.LastIndexOf(i.ToString());
+                // first try of this loop printed lots of -1 for the numbers not present 
+                // This handles that:
+                if (firstIndex == -1 || lastIndex == -1)
                 {
-                    Console.Write(input[i]);
+                    Console.WriteLine($"The number {i} is not present in the searched string");
+                }
+                else
+                {
+                    Console.WriteLine($"First position of {i} is {firstIndex}, the last position is {lastIndex}");
                 }
             }
+            Console.WriteLine();
+
         }
     }
 }
