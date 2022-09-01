@@ -30,18 +30,23 @@
                 int firstIndex = input.IndexOf(i.ToString());
                 int lastIndex = input.LastIndexOf(i.ToString());
                 // first try of this loop printed lots of -1 for the numbers not present 
-                // This handles that:
-                if (firstIndex == -1 || lastIndex == -1)
+                // This handles that with skipping. Also skips if number only occurs once:
+                if (firstIndex == -1 || lastIndex == -1 || firstIndex == lastIndex)
                 {
-                    Console.WriteLine($"The number {i} is not present in the searched string");
+                    continue;
                 }
                 else
                 {
-                    Console.WriteLine($"First position of {i} is {firstIndex}, the last position is {lastIndex}");
+                    for (int j = firstIndex; j < lastIndex; j++)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(input[j]);
+                    }
                 }
-            }
+
             Console.WriteLine();
+            }
 
         }
     }
-}
+} 
