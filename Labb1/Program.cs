@@ -71,10 +71,19 @@
 
             for (int i = 0; i < input.Length; i++)
             {
-
+                bool writeInColor = false;
                 bool isInt = int.TryParse(input[i].ToString(), out int number);
                 // if the number is an int change the color until same number found again
                 if (isInt)
+                { 
+                    writeInColor = true;
+                }
+                else
+                {
+                    writeInColor = false;
+                }
+
+                if (writeInColor)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write(input[i]);
