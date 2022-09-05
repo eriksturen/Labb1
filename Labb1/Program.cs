@@ -114,7 +114,7 @@
                         Console.Write(input[index]);
                     }
                 }
-
+                Console.WriteLine();
             }
             
 
