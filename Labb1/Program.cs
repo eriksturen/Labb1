@@ -7,8 +7,6 @@
             //FRÅN FÖRELÄNSNINGEN 
             //"Kan använda en forloop på en CharArray för att hitta alla "s" eller mellanrum eller något 
             string text = "Hejsan svejsan";
-            string ordEtt = string.Empty;
-            string ordTvå = string.Empty;
 
             bool hittadeOrdEtt = false;
 
@@ -28,17 +26,12 @@
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
                     Console.Write(text[i]);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
-            Console.WriteLine(ordEtt);
-            Console.WriteLine(ordTvå);
+            Console.WriteLine();
 
-                
-            
-
-            
             
 
             // ############## LABB 1 ##############
@@ -73,6 +66,47 @@
             //          {       
             //              print out everything from number to current position in green
             //          }
+
+
+
+            for (int i = 0; i < input.Length; i++)
+            {
+
+                bool isInt = int.TryParse(input[i].ToString(), out int number);
+                // if the number is an int change the color until same number found again
+                if (isInt)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(input[i]);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(input[i]);
+                }
+            }
+
+            //for (int i = 0; i < text.Length; i++)
+            //{
+            //    // has to be ' ' not " here because searching for 
+            //    if (text[i] == 'e')
+            //    {
+            //        hittadeOrdEtt = !hittadeOrdEtt;
+            //    }
+            //    if (hittadeOrdEtt)
+            //    {
+            //        Console.ForegroundColor = ConsoleColor.Green;
+            //        Console.Write(text[i]);
+            //    }
+            //    else
+            //    {
+            //        Console.Write(text[i]);
+            //        Console.ForegroundColor = ConsoleColor.White;
+            //    }
+            //}
+
+
+
 
         }
     }
