@@ -71,29 +71,52 @@
 
             for (int i = 0; i < input.Length; i++)
             {
-                bool writeInColor = false;
+                int firstIndex = 0;
+                int secondIndex = 0;
+                bool foundNumberAgain = false;
                 bool isInt = int.TryParse(input[i].ToString(), out int number);
                 // if the number is an int change the color until same number found again
                 if (isInt)
-                { 
-                    writeInColor = true;
-                }
-                else
                 {
-                    writeInColor = false;
+                    // for the rest of the string (beginning one index to the right)
+                    // search for the same number again
+                    for (int j = i+1; j < input.Length; j++)
+                    {
+                        bool isIntAgain = int.TryParse(input[j].ToString(), out int numberAgain);
+                        if (isIntAgain)
+                        {
+                            // the numbers between current (numberAgain) and original (number) 
+                            if (numberAgain == number)
+                            {
+                                foundNumberAgain = true;
+                                firstIndex = i;
+                                secondIndex = j;
+                            }
+                            //don't think these bools do anything really?
+                            else
+                            {
+                                foundNumberAgain = false;
+                            }
+                        }
+                    }
+                }
+                // from firstIndex to secondIndex - print in color 
+                for (int index = 0; index < input.Length; index++)
+                {
+                    if (index >= firstIndex && index <= secondIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(input[index]);
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(input[index]);
+                    }
                 }
 
-                if (writeInColor)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(input[i]);
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write(input[i]);
-                }
             }
+            
 
             //for (int i = 0; i < text.Length; i++)
             //{
