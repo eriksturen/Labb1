@@ -120,12 +120,19 @@
             // coloring the ones between what is stored in start/endindexes 
             for (int i = 0; i < numberStringsFound; i++)
             {
+                string tempNumber = "";
                 for (int index = 0; index < input.Length; index++)
                 {
                     if (index >= startIndexes[i] && index <= endIndexes[i])
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(input[index]);
+
+                        if (long.TryParse(input[index].ToString(), out long result))
+                        {
+                            tempNumber += input[index];
+                        }
+
                     }
                     else
                     {
@@ -134,6 +141,13 @@
                     }
                 }
                 Console.WriteLine();
+                numbersToSum[i] = long.Parse(tempNumber);
+            }
+
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (long number in numbersToSum)
+            {
+                Console.WriteLine(number);
             }
 
             // debug strings: 121gkjn343ng565gckjnb787 29535123p48723487597645723645
