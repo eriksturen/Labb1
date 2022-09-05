@@ -89,7 +89,6 @@
                     {
                         bool isIntAgain = int.TryParse(input[j].ToString(), out int numberAgain);
                         // skip round if it's anything other than a number
-
                         if (!isIntAgain)
                         {
                             break;
@@ -103,9 +102,8 @@
                                 endIndexes[numberStringsFound] = j;
                                 foundNumberAgain = true;
                                 numberStringsFound++;
-                                
+                                break;
                             }
-                            
                             else
                             {
                                 foundNumberAgain = false;
