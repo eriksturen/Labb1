@@ -68,12 +68,16 @@
             //          }
 
 
+            
             int firstIndex = 0;
             int secondIndex = 0;
+            // With a counter for the amount of found correct strings things should work out with the printouts
+            // fixed some of it - now it prints the correct number of times but only the last numberstring
+            int numberStringsFound = 0;
+            bool foundNumberAgain = false;
 
             for (int i = 0; i < input.Length; i++)
             {
-                bool foundNumberAgain = false;
                 bool isInt = int.TryParse(input[i].ToString(), out int number);
                 // if the number is an int change the color until same number found again
                 if (isInt)
@@ -89,10 +93,11 @@
                             if (numberAgain == number)
                             {
                                 foundNumberAgain = true;
+                                numberStringsFound++;
                                 firstIndex = i;
                                 secondIndex = j;
                             }
-                            //don't think these bools do anything really?
+                            
                             else
                             {
                                 foundNumberAgain = false;
@@ -100,7 +105,11 @@
                         }
                     }
                 }
-                // from firstIndex to secondIndex - print in color 
+            }
+
+            // from firstIndex to secondIndex - print in color 
+            for (int i = 0; i < numberStringsFound; i++)
+            {
                 for (int index = 0; index < input.Length; index++)
                 {
                     if (index >= firstIndex && index <= secondIndex)
@@ -116,7 +125,9 @@
                 }
                 Console.WriteLine();
             }
-            
+
+
+
 
             //for (int i = 0; i < text.Length; i++)
             //{
