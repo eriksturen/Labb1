@@ -4,10 +4,47 @@
     {
         static void Main(string[] args)
         {
+            //FRÅN FÖRELÄNSNINGEN 
+            //"Kan använda en forloop på en CharArray för att hitta alla "s" eller mellanrum eller något 
+            string text = "Hejsan svejsan";
+            string ordEtt = string.Empty;
+            string ordTvå = string.Empty;
+
+            bool hittadeOrdEtt = false;
+
+
+            // This writes out from same to same in a different color with the rest of the string uncolored!
+            for (int i = 0; i < text.Length; i++)
+            {
+                // has to be ' ' not " here because searching for 
+                if (text[i] == 'e')
+                {
+                    hittadeOrdEtt = !hittadeOrdEtt;
+                }
+                if (hittadeOrdEtt)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(text[i]);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(text[i]);
+                }
+            }
+            Console.WriteLine(ordEtt);
+            Console.WriteLine(ordTvå);
+
+                
+            
+
+            
+            
+
+            // ############## LABB 1 ##############
             // program prompts user to enter a text string to be searched 
             Console.WriteLine("Enter a string to search through: ");
             string input = Console.ReadLine();
-
 
             // text string is to be searched for substrings with numbers 
             // the substrings should start and end with the same number 
@@ -16,37 +53,27 @@
             // the program should tell us that there are two substrings of interest here:
             // 242 and 5000005
 
-            // the program will tell us this by printing the full input string with 
+            // TODO 1: the program will tell us this by printing the full input string with 
             // each substring marked in a different color to the console
             // this happens once for each substring, so two times on this example. 
 
-            // all substring numbers are also to be added - this needs a long instead of an int
+            // TODO 2: all substring numbers are also to be added - this needs a long instead of an int
             // because very large number is possible 
 
+            // console.foregroundcolor = ConsoleColor.Green/white
 
-            // print out first and last index of each occurence of all numbers between 0-9
-            for (int i = 0; i < 10; i++)
-            {
-                int firstIndex = input.IndexOf(i.ToString());
-                int lastIndex = input.LastIndexOf(i.ToString());
-                // first try of this loop printed lots of -1 for the numbers not present 
-                // This handles that with skipping. Also skips if number only occurs once:
-                if (firstIndex == -1 || lastIndex == -1 || firstIndex == lastIndex)
-                {
-                    continue;
-                }
-                else
-                {
-                    for (int j = firstIndex; j <= lastIndex; j++)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write(input[j]);
-                    }
-                }
-
-            Console.WriteLine();
-            }
+            // pseudo code
+            // for (the whole input string) 
+            // { 
+            //      if (input[i] is a number)
+            //      { 
+            //          change color to green
+            //          search through rest of string for THE SAME number
+            //          if (number is found) 
+            //          {       
+            //              print out everything from number to current position in green
+            //          }
 
         }
     }
-} 
+}
