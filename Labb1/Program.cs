@@ -85,7 +85,7 @@
                 {
                     // for the rest of the string (beginning one index to the right)
                     // search for the same number again
-                    for (int j = i+1; j < input.Length; j++)
+                    for (int j = i+2; j < input.Length; j++)
                     {
                         bool isIntAgain = int.TryParse(input[j].ToString(), out int numberAgain);
                         // skip round if it's anything other than a number
