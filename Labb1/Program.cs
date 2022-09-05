@@ -68,11 +68,11 @@
             //          }
 
 
+            int firstIndex = 0;
+            int secondIndex = 0;
 
             for (int i = 0; i < input.Length; i++)
             {
-                int firstIndex = 0;
-                int secondIndex = 0;
                 bool foundNumberAgain = false;
                 bool isInt = int.TryParse(input[i].ToString(), out int number);
                 // if the number is an int change the color until same number found again
