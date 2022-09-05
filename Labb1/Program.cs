@@ -69,8 +69,6 @@
 
 
             
-            int firstIndex = 0;
-            int secondIndex = 0;
             // With a counter for the amount of found correct strings things should work out with the printouts
             // fixed some of it - now it prints the correct number of times but only the last numberstring
             int numberStringsFound = 0;
@@ -90,7 +88,13 @@
                     for (int j = i+1; j < input.Length; j++)
                     {
                         bool isIntAgain = int.TryParse(input[j].ToString(), out int numberAgain);
-                        if (isIntAgain)
+                        // skip round if it's anything other than a number
+
+                        if (!isIntAgain)
+                        {
+                            break;
+                        }
+                        else
                         {
                             // the numbers between current (numberAgain) and original (number) 
                             if (numberAgain == number)
@@ -111,7 +115,8 @@
                 }
             }
 
-            // from firstIndex to secondIndex - print in color 
+            // now, for the amount of correct strings found, print out the whole string again
+            // coloring the ones between what is stored in start/endindexes 
             for (int i = 0; i < numberStringsFound; i++)
             {
                 for (int index = 0; index < input.Length; index++)
@@ -130,28 +135,7 @@
                 Console.WriteLine();
             }
 
-
-
-
-            //for (int i = 0; i < text.Length; i++)
-            //{
-            //    // has to be ' ' not " here because searching for 
-            //    if (text[i] == 'e')
-            //    {
-            //        hittadeOrdEtt = !hittadeOrdEtt;
-            //    }
-            //    if (hittadeOrdEtt)
-            //    {
-            //        Console.ForegroundColor = ConsoleColor.Green;
-            //        Console.Write(text[i]);
-            //    }
-            //    else
-            //    {
-            //        Console.Write(text[i]);
-            //        Console.ForegroundColor = ConsoleColor.White;
-            //    }
-            //}
-
+            // debug strings: 121gkjn343ng565gckjnb787 29535123p48723487597645723645
 
 
 
