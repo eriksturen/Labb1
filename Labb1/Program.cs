@@ -4,47 +4,12 @@
     {
         static void Main(string[] args)
         {
-            //FRÅN FÖRELÄNSNINGEN 
-            //"Kan använda en forloop på en CharArray för att hitta alla "s" eller mellanrum eller något 
-            string text = "Hejsan svejsan";
-
-            bool hittadeOrdEtt = false;
-
-
-            // This writes out from same to same in a different color with the rest of the string uncolored!
-            for (int i = 0; i < text.Length; i++)
-            {
-                // has to be ' ' not " here because searching for 
-                if (text[i] == 'e')
-                {
-                    hittadeOrdEtt = !hittadeOrdEtt;
-                }
-                if (hittadeOrdEtt)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(text[i]);
-                }
-                else
-                {
-                    Console.Write(text[i]);
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-            }
-            Console.WriteLine();
-
-            
-
             // ############## LABB 1 ##############
             // program prompts user to enter a text string to be searched 
             Console.WriteLine("Enter a string to search through: ");
             string input = Console.ReadLine();
 
-            // text string is to be searched for substrings with numbers 
-            // the substrings should start and end with the same number 
-            // but not contain anything other than numbers 
-            // for example input: 242m500005 
-            // the program should tell us that there are two substrings of interest here:
-            // 242 and 5000005
+
 
             // TODO 1: the program will tell us this by printing the full input string with 
             // each substring marked in a different color to the console
@@ -55,17 +20,6 @@
 
             // console.foregroundcolor = ConsoleColor.Green/white
 
-            // pseudo code
-            // for (the whole input string) 
-            // { 
-            //      if (input[i] is a number)
-            //      { 
-            //          change color to green
-            //          search through rest of string for THE SAME number
-            //          if (number is found) 
-            //          {       
-            //              print out everything from number to current position in green
-            //          }
 
 
             
@@ -114,7 +68,9 @@
                 }
             }
 
-            long[] numbersToSum = new long[numberStringsFound];
+            // perhaps overkill to use ulong
+            // but people might write REALLY large numbers in the strings for testing purposes
+            ulong[] numbersToSum = new ulong[numberStringsFound];
 
             // now, for the amount of correct strings found, print out the whole string again
             // coloring the ones between what is stored in start/endindexes 
@@ -128,7 +84,7 @@
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(input[index]);
 
-                        if (long.TryParse(input[index].ToString(), out long result))
+                        if (ulong.TryParse(input[index].ToString(), out ulong result))
                         {
                             tempNumber += input[index];
                         }
@@ -141,14 +97,19 @@
                     }
                 }
                 Console.WriteLine();
-                numbersToSum[i] = long.Parse(tempNumber);
+                numbersToSum[i] = ulong.Parse(tempNumber);
             }
 
+            //create a REALLY large numberspace to store the sum to be printed
+            ulong sumToPrint = 0;
+
             Console.ForegroundColor = ConsoleColor.White;
-            foreach (long number in numbersToSum)
+            foreach (ulong number in numbersToSum)
             {
-                Console.WriteLine(number);
+                sumToPrint += number;
             }
+            // print out the sum of all found numbers:
+            Console.WriteLine($"Total = {sumToPrint}");
 
             // debug strings: 121gkjn343ng565gckjnb787 29535123p48723487597645723645
 
