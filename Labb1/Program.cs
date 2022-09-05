@@ -75,6 +75,9 @@
             // fixed some of it - now it prints the correct number of times but only the last numberstring
             int numberStringsFound = 0;
             bool foundNumberAgain = false;
+            // an int array to hold indexes of start and end of numberstrings
+            int[] startIndexes = new int[input.Length];
+            int[] endIndexes = new int[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
@@ -92,10 +95,11 @@
                             // the numbers between current (numberAgain) and original (number) 
                             if (numberAgain == number)
                             {
+                                startIndexes[numberStringsFound] = i;
+                                endIndexes[numberStringsFound] = j;
                                 foundNumberAgain = true;
                                 numberStringsFound++;
-                                firstIndex = i;
-                                secondIndex = j;
+                                
                             }
                             
                             else
@@ -112,7 +116,7 @@
             {
                 for (int index = 0; index < input.Length; index++)
                 {
-                    if (index >= firstIndex && index <= secondIndex)
+                    if (index >= startIndexes[i] && index <= endIndexes[i])
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(input[index]);
