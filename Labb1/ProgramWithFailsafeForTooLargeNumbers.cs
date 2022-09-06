@@ -1,11 +1,20 @@
-﻿namespace Labb1
+﻿// NOTE: This is a version of the exact same program as the original one. 
+// Only difference is that a failsafe is included for VERY large testingstrings
+// In case a string is inputed with too long numbersubstrings the sum cannot be stored correctly in a ulong
+// in that case the orignal program breaks down. This version runs the rest of the program while telling user
+// that the sum cannot be calculated safely since one or more of the numbers in the string made the sum too large
+
+
+namespace Labb1
 {
-    internal class Program
+    internal class ProgramWithFailsafe
     {
-        static void Main(string[] args)
+        static void MainWithFailsafe(string[] args)
         {
             // ############## LABB 1 ##############
-            // Prompt user to enter a text string to be searched :
+            // Prompt user to enter a text string to be searched:
+            // the string can now be relatively large but there still is a limit,
+            // especially if the numbersubstrings are too long - the sum in the end is what's limiting now
             Console.WriteLine("Enter a string to search through: ");
             string input = Console.ReadLine();
 
@@ -62,6 +71,7 @@
 
             // now, for the amount of correct strings found, print out the whole string again
             // coloring the ones between what is stored in start/endindexes 
+            bool parsingError = false;
             for (int i = 0; i < numberStringsFound; i++)
             {
                 // this temp var is used to store numbers that are to be summed 
@@ -89,10 +99,20 @@
                 // empty line for formatting purposes
                 Console.WriteLine();
                 // save the number to sum to the list of ulongs
-                numbersToSum[i] = ulong.Parse(tempNumber);
+                bool ulongParseOk = ulong.TryParse(tempNumber, out ulong parsedUlong);
+                if (ulongParseOk)
+                {
+                    numbersToSum[i] = parsedUlong;
+                }
+                else
+                {
+                    parsingError = true;
+                    break;
+                }
+                //numbersToSum[i] = ulong.Parse(tempNumber);
             }
 
-            //create a REALLY large numberspace to store the sum to be printed
+            //create a REALLY large number variable to store the sum to be printed
             ulong sumToPrint = 0;
 
             // simple loop to add numbers to the sum
@@ -101,8 +121,16 @@
             {
                 sumToPrint += number;
             }
-            // print out the sum of all found numbers:
-            Console.WriteLine($"Total = {sumToPrint}");
+            // print out the sum of all found numbers if no errors happened earlier:
+            if (parsingError == false)
+            {
+                Console.WriteLine($"Total = {sumToPrint}");
+            }
+            else if (parsingError == true)
+            {
+                Console.WriteLine($"One or many of the numbersubstrings were to large to be parsed as ulongs. \n" +
+                    $"The sum cannot be calculated accurately");
+            }
 
             // weird debug strings: 121gkjn343ng565gckjnb787 from instruction: 29535123p48723487597645723645
 
